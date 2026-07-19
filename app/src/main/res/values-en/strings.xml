@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Buron Owner</string>
+    <string name="app_name">ToyBron Owner</string>
     <string name="nav_dashboard">Home</string>
     <string name="nav_bookings">Bookings</string>
     <string name="nav_venues">Venues</string>

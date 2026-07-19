@@ -21,12 +21,12 @@ android {
         buildConfigField(
             "String",
             "API_BASE_URL",
-            "\"https://toyxona-backend-qb3x.onrender.com/api/\""
+            "\"http://api.toybron.uz/api/\""
         )
         buildConfigField(
             "String",
             "UPLOADS_BASE_URL",
-            "\"https://toyxona-backend-qb3x.onrender.com/uploads/\""
+            "\"http://api.toybron.uz/uploads/\""
         )
     }
 
@@ -35,12 +35,12 @@ android {
             buildConfigField(
                 "String",
                 "API_BASE_URL",
-                "\"https://toyxona-backend-qb3x.onrender.com/api/\""
+                "\"http://api.toybron.uz/api/\""
             )
             buildConfigField(
                 "String",
                 "UPLOADS_BASE_URL",
-                "\"https://toyxona-backend-qb3x.onrender.com/uploads/\""
+                "\"http://api.toybron.uz/uploads/\""
             )
         }
         release {

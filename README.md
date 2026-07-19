@@ -13,8 +13,8 @@ Native Kotlin / Jetpack Compose app for **toyxona (banquet hall) owners** on the
 
 | Setting | Value |
 |---------|-------|
-| API | `https://toyxona-backend-qb3x.onrender.com/api/` |
-| Uploads | `https://toyxona-backend-qb3x.onrender.com/uploads/` |
+| API | `http://api.toybron.uz/api/` |
+| Uploads | `http://api.toybron.uz/uploads/` |
 | Health | `GET /api/health` |
 
 > **Note:** Render free tier may cold-start in 15–30 seconds. The splash screen retries automatically.

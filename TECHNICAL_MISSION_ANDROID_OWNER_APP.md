@@ -6,7 +6,7 @@
 
 | Component | Technology | Status |
 |-----------|------------|--------|
-| Backend | Node.js, Express, MongoDB, JWT | Deployed on [Render](https://toyxona-backend-qb3x.onrender.com/) |
+| Backend | Node.js, Express, MongoDB, JWT | Deployed on [ToyBron](http://api.toybron.uz/) |
 | Frontend (web) | Next.js 15, TypeScript, Tailwind | Client + owner web dashboard exist |
 | **Android (your task)** | **Kotlin, Jetpack Compose** | **Owner app only — to be built** |
 
@@ -51,23 +51,23 @@ Give venue owners a mobile app to:
 
 ---
 
-## 3. Backend Integration (Render)
+## 3. Backend Integration (ToyBron)
 
 ### 3.1 Production API
 
 ```
-Base URL:  https://toyxona-backend-qb3x.onrender.com/api
+Base URL:  http://api.toybron.uz/api
 Health:    GET /api/health  →  { "status": "ok" }
-Uploads:   https://toyxona-backend-qb3x.onrender.com/uploads/{filename}
+Uploads:   http://api.toybron.uz/uploads/{filename}
 ```
 
 The health endpoint is verified and the backend is live.
 
-### 3.2 Render-Specific Considerations
+### 3.2 Deployment Considerations
 
 | Issue | Solution |
 |-------|----------|
-| Cold start (15–30 s on free tier) | Show splash/loading screen, implement retry logic, inform the user |
+| Cold start | Show splash/loading screen, implement retry logic, inform the user |
 | JWT expiry (7 days) | Persist token securely; on 401 redirect to login |
 | CORS | Does not apply to native Android apps |
 | Image uploads | Use `multipart/form-data`; max 5 MB per file; JPEG, PNG, WebP only |
@@ -76,8 +76,8 @@ The health endpoint is verified and the backend is live.
 
 ```kotlin
 // build.gradle.kts (BuildConfig)
-const val BASE_URL = "https://toyxona-backend-qb3x.onrender.com/api/"
-const val UPLOADS_BASE_URL = "https://toyxona-backend-qb3x.onrender.com/uploads/"
+const val BASE_URL = "http://api.toybron.uz/api/"
+const val UPLOADS_BASE_URL = "http://api.toybron.uz/uploads/"
 ```
 
 **AndroidManifest.xml permissions:**
@@ -88,7 +88,7 @@ const val UPLOADS_BASE_URL = "https://toyxona-backend-qb3x.onrender.com/uploads/
 <uses-permission android:name="android.permission.CALL_PHONE" />
 ```
 
-HTTPS is sufficient; no custom network security config required for production.
+HTTP is used; `android:usesCleartextTraffic="true"` is required in `AndroidManifest.xml`.
 
 ---
 
@@ -308,7 +308,7 @@ UI strings remain in Uzbek to match the existing web product.
 
 ## 7. Full API Contract (Owner App)
 
-All paths are relative to `https://toyxona-backend-qb3x.onrender.com/api`.
+All paths are relative to `http://api.toybron.uz/api`.
 
 ### 7.1 Auth
 
@@ -708,7 +708,7 @@ suspend fun buildVenueParts(
 Uploaded images are served at:
 
 ```
-https://toyxona-backend-qb3x.onrender.com/uploads/{filename}
+http://api.toybron.uz/uploads/{filename}
 ```
 
 ---
@@ -718,7 +718,7 @@ https://toyxona-backend-qb3x.onrender.com/uploads/{filename}
 - Store JWT in `EncryptedSharedPreferences` or Android Keystore
 - Do not log passwords; use OkHttp BODY logging only in debug builds
 - Set `android:allowBackup="false"` or exclude token from backup
-- Certificate pinning — optional for Phase 2
+- HTTP is used for the backend; cleartext traffic is enabled.
 
 ---
 
@@ -744,7 +744,7 @@ https://toyxona-backend-qb3x.onrender.com/uploads/{filename}
 - [ ] Calendar displays correct day colors
 - [ ] Excel/PDF export downloads successfully
 - [ ] Expired token redirects to login
-- [ ] App works with Render cold start delay
+- [ ] App works with new backend URL
 - [ ] Click-to-call intent works
 
 ---
@@ -755,7 +755,7 @@ https://toyxona-backend-qb3x.onrender.com/uploads/{filename}
 - Project setup (Compose, Hilt, Retrofit)
 - Auth (Login, Register, TokenStore)
 - Bottom Navigation skeleton
-- Render backend connection
+- Backend connection
 
 ### Phase 2 — Venues (1.5 weeks)
 - List, create, edit, delete
@@ -899,6 +899,6 @@ The Android app must enforce `role == owner` on login and block access to admin/
 
 ---
 
-**Production Backend:** https://toyxona-backend-qb3x.onrender.com/api
+**Production Backend:** http://api.toybron.uz/api
 
 **Document based on analysis of:** `toyxona-backend` and `toyxona-frontend` codebases.

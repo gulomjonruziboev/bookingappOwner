@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Buron Владелец</string>
+    <string name="app_name">ToyBron Владелец</string>
     <string name="nav_dashboard">Главная</string>
     <string name="nav_bookings">Брони</string>
     <string name="nav_venues">Залы</string>
